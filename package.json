@@ -1,0 +1,36 @@
+{
+  "name": "showcase-api",
+  "version": "0.1.0",
+  "description": "A pointless api as part of some kind of skill showcase",
+  "author": "lteacher",
+  "license": "BSD-2-Clause",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava --require babel-register",
+    "dev": "babel-node index.js",
+    "build": "babel index.js app --out-dir dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-async-to-generator",
+      "transform-class-properties"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "micro-core": "0.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-cli": "6.8.0",
+    "babel-plugin-transform-async-to-generator": "6.8.0",
+    "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.8.0",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0"
+  }
+}
