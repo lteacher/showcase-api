@@ -12,7 +12,12 @@ test.before(async t => {
     db: 'test'
   });
 
-  await r.tableDrop('users').run(conn);
+  // Check exists
+  let exists = await r.tableList().contains('users').run(conn);
+
+  // Drop if so
+  if(exists) await r.tableDrop('users').run(conn);
+
   await r.tableCreate('users').run(conn);
 });
 
