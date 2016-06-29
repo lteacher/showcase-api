@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '6'
+
+sudo: false
+
+services:
+  - docker
+
+before_install:
+  - docker run --name rethinkdb -p 28015:28015 -p 29015:29015 -d rethinkdb
+  - npm install -g ava
+
+# after_success:
+#   - npm run coverage

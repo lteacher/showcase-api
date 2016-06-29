@@ -36,3 +36,4 @@ dist
 
 # Project specific
 .tern-project
+.env

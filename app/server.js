@@ -1,18 +1,17 @@
 import express from 'express';
 import userRouter from './routes/users';
+import bodyParser from 'body-parser';
 
-class Server {
-  app = express();
+const app = express();
 
-  constructor() {
-    // Set base route
-    this.app.get('/', (req, res) => res.sendStatus(200));
+// Root path
+app.get('/', (req, res) => res.sendStatus(200));
 
-    // Init routers
-    this.app.use('/users', userRouter);
-  }
+// Users router
+app.use('/users', userRouter);
 
-  start = (port = 8000) => this.app.listen(port);
-}
+// Listen
+app.listen(8000);
 
-module.exports = new Server();
+// Export the app for testing
+module.exports = app;

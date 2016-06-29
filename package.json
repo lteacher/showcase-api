@@ -4,11 +4,14 @@
   "description": "A pointless api as part of some kind of skill showcase",
   "author": "lteacher",
   "license": "BSD-2-Clause",
-  "main": "index.js",
+  "main": "app/server.js",
   "scripts": {
-    "test": "ava --require babel-register",
-    "dev": "babel-node index.js",
-    "build": "babel index.js app --out-dir dist"
+    "test": "ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "dev": "babel-node app/server.js",
+    "build": "babel app --out-dir dist",
+    "start": "node dist/server.js",
+    "clean": "rm -r dist/"
   },
   "files": [
     "dist"
@@ -18,11 +21,25 @@
       "transform-es2015-modules-commonjs",
       "transform-async-to-generator",
       "transform-class-properties"
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
     ]
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "config": "^1.21.0",
     "express": "^4.14.0",
-    "micro-core": "0.3.0"
+    "micro-core": "0.3.0",
+    "passport": "^0.3.2",
+    "rethinkdb": "^2.3.2"
   },
   "devDependencies": {
     "ava": "^0.15.2",
@@ -30,6 +47,9 @@
     "babel-plugin-transform-async-to-generator": "6.8.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-es2015-modules-commonjs": "6.8.0",
+    "coveralls": "^2.11.9",
+    "dotenv": "^2.0.0",
+    "nyc": "^6.6.1",
     "supertest": "^1.2.0",
     "supertest-as-promised": "^3.1.0"
   }
